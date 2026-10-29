@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<workbook source-platform="win" version="2023.1" xmlns:user="http://www.tableausoftware.com/xml/user">
+  <preferences><preference name="ShowDialogsOnNew" value="false" /></preferences>
+  <datasources>
+  <datasource caption="monthly_kpis" name="federated.0" version="2023.1">
+    <connection class="textscan" dbname="monthly_kpis.csv" filename="" />
+    <column-mapping />
+      <column caption="month" datatype="string" name="[month]" role="dimension" type="ordinal" />
+      <column caption="active_subs" datatype="integer" name="[active_subs]" role="dimension" type="ordinal" />
+      <column caption="new_subs" datatype="integer" name="[new_subs]" role="dimension" type="ordinal" />
+      <column caption="churned_subs" datatype="integer" name="[churned_subs]" role="dimension" type="ordinal" />
+      <column caption="mrr" datatype="real" name="[mrr]" role="dimension" type="ordinal" />
+      <column caption="revenue_collected" datatype="real" name="[revenue_collected]" role="dimension" type="ordinal" />
+      <column caption="refunds" datatype="real" name="[refunds]" role="dimension" type="ordinal" />
+      <column caption="failed_payments" datatype="integer" name="[failed_payments]" role="dimension" type="ordinal" />
+      <column caption="churn_rate_pct" datatype="real" name="[churn_rate_pct]" role="dimension" type="ordinal" />
+      <column caption="mom_mrr_growth_pct" datatype="real" name="[mom_mrr_growth_pct]" role="dimension" type="ordinal" />
+      <column caption="running_revenue" datatype="real" name="[running_revenue]" role="dimension" type="ordinal" />
+  </datasource>
+  <datasource caption="revenue_by_plan" name="federated.1" version="2023.1">
+    <connection class="textscan" dbname="revenue_by_plan_monthly.csv" filename="" />
+    <column-mapping />
+      <column caption="month" datatype="string" name="[month]" role="dimension" type="ordinal" />
+      <column caption="plan" datatype="string" name="[plan]" role="dimension" type="ordinal" />
+      <column caption="n_payments" datatype="integer" name="[n_payments]" role="dimension" type="ordinal" />
+      <column caption="revenue" datatype="real" name="[revenue]" role="dimension" type="ordinal" />
+  </datasource>
+  <datasource caption="churn_by_channel" name="federated.2" version="2023.1">
+    <connection class="textscan" dbname="churn_by_channel.csv" filename="" />
+    <column-mapping />
+      <column caption="channel" datatype="string" name="[channel]" role="dimension" type="ordinal" />
+      <column caption="customers" datatype="integer" name="[customers]" role="dimension" type="ordinal" />
+      <column caption="subscriptions" datatype="integer" name="[subscriptions]" role="dimension" type="ordinal" />
+      <column caption="churned_subs" datatype="integer" name="[churned_subs]" role="dimension" type="ordinal" />
+      <column caption="churn_share_pct" datatype="real" name="[churn_share_pct]" role="dimension" type="ordinal" />
+      <column caption="lifetime_revenue" datatype="real" name="[lifetime_revenue]" role="dimension" type="ordinal" />
+  </datasource>
+  </datasources>
+  <worksheets>
+  <worksheet name="MRR Trend">
+    <table>
+      <view><datasource-dependencies><datasource-dependency datasource="monthly_kpis">Line: month (x) vs mrr (y). Jan 2025–Jun 2026.</datasource-dependency></datasource-dependencies></view>
+    </table>
+  </worksheet>
+  <worksheet name="Revenue Collected &amp; Running Revenue">
+    <table>
+      <view><datasource-dependencies><datasource-dependency datasource="monthly_kpis">Bars: revenue_collected; line: running_revenue, by month.</datasource-dependency></datasource-dependencies></view>
+    </table>
+  </worksheet>
+  <worksheet name="Subscriber Growth vs Churn">
+    <table>
+      <view><datasource-dependencies><datasource-dependency datasource="monthly_kpis">Line: active_subs; bars: new_subs vs churned_subs, by month.</datasource-dependency></datasource-dependencies></view>
+    </table>
+  </worksheet>
+  <worksheet name="Revenue by Plan">
+    <table>
+      <view><datasource-dependencies><datasource-dependency datasource="revenue_by_plan">Stacked bars: revenue by month, coloured by plan.</datasource-dependency></datasource-dependencies></view>
+    </table>
+  </worksheet>
+  <worksheet name="Churn by Channel">
+    <table>
+      <view><datasource-dependencies><datasource-dependency datasource="churn_by_channel">Bars: churn_share_pct by channel.</datasource-dependency></datasource-dependencies></view>
+    </table>
+  </worksheet>
+  </worksheets>
+  <dashboards>
+    <dashboard name="SaaS Revenue Dashboard">
+      <title>SaaS Subscription Revenue Dashboard — SYNTHETIC DATA (Portfolio Demo)</title>
+      <subtitle>All data is SYNTHETIC — generated for a portfolio demo from Project 8 (ETL-to-report pipeline). Not real company data, not work experience.</subtitle>
+      <zones>
+    <zone h="400" name="MRR Trend" w="800" x="0" y="0" />
+    <zone h="400" name="Revenue Collected &amp; Running Revenue" w="800" x="0" y="410" />
+    <zone h="400" name="Subscriber Growth vs Churn" w="800" x="0" y="820" />
+    <zone h="400" name="Revenue by Plan" w="800" x="0" y="1230" />
+    <zone h="400" name="Churn by Channel" w="800" x="0" y="1640" />
+      </zones>
+    </dashboard>
+  </dashboards>
+</workbook>

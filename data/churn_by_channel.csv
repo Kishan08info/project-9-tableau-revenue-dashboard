@@ -1,0 +1,5 @@
+channel,customers,subscriptions,churned_subs,churn_share_pct,lifetime_revenue
+organic,504,504,148,29.4,644605.0
+paid_search,362,362,93,25.7,538803.4
+referral,210,210,60,28.6,272239.6
+partner,124,124,35,28.2,168434.6

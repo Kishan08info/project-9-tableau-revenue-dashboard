@@ -1,0 +1,20 @@
+{
+  "months": 18,
+  "period": "2025-01 to 2026-06",
+  "mrr_first": 11050.4,
+  "mrr_last": 163506.1,
+  "mrr_growth_pct": 1379.6,
+  "active_first": 48,
+  "active_last": 894,
+  "total_revenue_collected": 1624082.6,
+  "running_revenue_last": 1624082.6,
+  "total_new_subs": 1200,
+  "total_churned_subs": 336,
+  "avg_monthly_churn_rate_pct": 5.16,
+  "revenue_by_plan_total": {
+    "enterprise": 726073.2,
+    "growth": 298564.2,
+    "pro": 484454.4,
+    "starter": 114990.8
+  }
+}
